@@ -6,15 +6,12 @@
 
 const Hangman = function (word, guesses) {
 
-    // Split the string that is provided for the word into seperate letters.
-    // word = word.split("");
-    // word = word.map(letter => letter.toLowerCase())
-
     this.word = word.toLowerCase().split(''),
     this.remainingGuesses = guesses,
     this.guessedLetters = []
 }
 
+// Display the current state of the puzzle, based on the letters that have been guessed.
 Hangman.prototype.getPuzzle = function () {
 
     let puzzle = ''
@@ -25,7 +22,7 @@ Hangman.prototype.getPuzzle = function () {
     });
 
     // Return the completed puzzle string after the forEach loop
-    return puzzle
+    return `The word is: ${puzzle}`
 
 }
 
@@ -70,24 +67,3 @@ Hangman.prototype.makeGuess = function (guess) {
     }
     
 }
-
-const gameOne = new Hangman ('Cat', 2)
-// Guess c, t, z
-
-// Single guesses
-gameOne.makeGuess('c')
-gameOne.makeGuess('t');
-gameOne.makeGuess('z');
-
-// Multiple guesses
-// gameOne.makeGuess('ctz')
-
-console.log(gameOne.getPuzzle());
-console.log(gameOne.remainingGuesses)
-// Print remaining guesses (should be 1)
-
-const gameTwo = new Hangman ('New Jersey', 4)
-// Guess w
-gameTwo.makeGuess('w')
-console.log(gameTwo.getPuzzle()) 
-// prints **w ******
