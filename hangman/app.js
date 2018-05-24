@@ -4,10 +4,10 @@ const guessEl = document.querySelector("#guesses")
 const statusEl = document.querySelector("#status")
 
 // Setup the first game
-const gameOne = new Hangman('Cat', 2)
+const gameOne = new Hangman('car parts', 2)
 
 // Display the initial hangman word puzzle, before any guesses have been made.
-puzzleEl.textContent = gameOne.getPuzzle()
+puzzleEl.textContent = gameOne.puzzle
 // Display the initial remaining guesses before the user has guessed.
 guessEl.textContent = `Remaining guesses: ${gameOne.remainingGuesses}`
 // Display the initial play status of the game.
@@ -21,7 +21,7 @@ window.addEventListener('keypress', function (e) {
 
     // Update the DOM elements on keypress.
     statusEl.textContent = gameOne.playStatus()
-    puzzleEl.textContent = gameOne.getPuzzle()
+    puzzleEl.textContent = gameOne.puzzle
     guessEl.textContent = `Remaining guesses: ${gameOne.remainingGuesses}`
 
 })
