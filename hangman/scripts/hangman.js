@@ -16,26 +16,31 @@ class Hangman {
         });
 
         // Return the completed puzzle string after the forEach loop
-        return `The word is: ${puzzle}`
+        // return `The word is: ${puzzle}`
+        return puzzle
     }
 
     makeGuess(guess) {
         guess = guess.toLowerCase()
+        const isUnique = !this.guessedLetters.includes(guess)
+        const isBadGuess = !this.word.includes(guess)
 
         // If the current status of the game is not 'playing', then the code below will not run because it will return undefined and stop. This will ensure that the user cannot make a guess anymore once the game is finished or failed. This will stop the call in app.js (gameOne.makeGuess(guess))
         if (this.status !== 'playing') {
             return
         }
 
-        // Check if the guessed letter isn't already in the array, to only allow unique guesses being made (no doubles). Only check if it isn't, instead of also checking if it is and then pushing it to the array in the else statement like above. Think more about the code that needs to be performed instead of writing an if-else statement straight away.
-        if (!this.guessedLetters.includes(guess)) {
+        // Check if the guessed letter isn't already in the array, to only allow unique guesses being made (no doubles).
+        if (isUnique) {
             this.guessedLetters.push(guess)
         }
-
+        
         // Subtract a remaining guess if the guess is not included in the game word.
-        if (!this.word.includes(guess)) {
+        if (isUnique && isBadGuess) {
             this.remainingGuesses--
         }
+
+        this.playStatus()
     }
 
     playStatus() {
@@ -58,13 +63,20 @@ class Hangman {
 
         if (this.remainingGuesses === 0) {
             this.status = 'failed'
-            return `Nice try! The word was "${this.word.join('')}"`
         } else if (finished) {
             this.status = 'finished'
-            return 'Great work! You guessed the word.'
         } else {
             this.status = 'playing'
-            return `Current game status: ${this.status}`
+        }
+    }
+
+    get statusMessage() {
+        if (this.status === 'playing') {
+            return `Guesses left: ${this.remainingGuesses}`
+        } else if (this.status === 'failed') {
+            return `Nice try! The word was "${this.word.join('')}".`
+        } else {
+            return 'Great work! You guessed the word.'
         }
     }
 }

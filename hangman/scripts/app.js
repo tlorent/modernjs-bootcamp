@@ -1,7 +1,6 @@
 // Set up the DOM queries for reuse.
 const puzzleEl = document.querySelector("#puzzle")
 const guessEl = document.querySelector("#guesses")
-const statusEl = document.querySelector("#status")
 const resetEl = document.querySelector("#reset")
 
 // Setup a variable for the puzzle game. Don't assign a value at first.
@@ -9,6 +8,7 @@ let game
 
 // Make the puzzle interactive by using the letters pressed on the keyboard.
 window.addEventListener('keypress', (e) => {
+
     // Extract the letter the user typed for the guess.
     const guess = String.fromCharCode(e.charCode)
     game.makeGuess(guess)
@@ -20,10 +20,14 @@ window.addEventListener('keypress', (e) => {
 // Function for rendering the DOM information: the playstatus, the word to be guessed, how many guesses a player has.
 const render = () => {
     // Update the DOM elements on keypress.
-    statusEl.textContent = game.playStatus()
-    puzzleEl.textContent = game.puzzle
-    guessEl.textContent = `Remaining guesses: ${game.remainingGuesses}`
-}
+
+    // Clear all HTML inside of puzzle element and set the message for the current status.
+    puzzleEl.innerHTML = ''
+    guessEl.textContent = game.statusMessage
+
+    puzzle = game.puzzle.toLowerCase().split('')
+    puzzle.forEach((letter) => puzzleEl.innerHTML += `<span>${letter}</span>`)
+} 
 
 const startGame = async () => {
 
