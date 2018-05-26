@@ -27,7 +27,7 @@ class Hangman {
             return
         }
 
-        // Check if the guessed letter isn't already in the array, to only allow unique guesses being made (no doubles). Only check if it isn't, instead of also checking if it is and then pushing it to the array in the else statement like above. Think more about the code that needs to be performed instead of writing an if statement straight away.
+        // Check if the guessed letter isn't already in the array, to only allow unique guesses being made (no doubles). Only check if it isn't, instead of also checking if it is and then pushing it to the array in the else statement like above. Think more about the code that needs to be performed instead of writing an if-else statement straight away.
         if (!this.guessedLetters.includes(guess)) {
             this.guessedLetters.push(guess)
         }
