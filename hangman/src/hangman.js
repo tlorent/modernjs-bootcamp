@@ -32,7 +32,7 @@ class Hangman {
 
         // Check if the guessed letter isn't already in the array, to only allow unique guesses being made (no doubles).
         if (isUnique) {
-            this.guessedLetters.push(guess)
+            this.guessedLetters = [...this.guessedLetters, guess]
         }
         
         // Subtract a remaining guess if the guess is not included in the game word.
@@ -80,3 +80,5 @@ class Hangman {
         }
     }
 }
+
+export { Hangman as default }

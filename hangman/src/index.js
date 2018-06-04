@@ -1,3 +1,6 @@
+import Hangman from './hangman'
+import getPuzzle from './requests'
+
 // Set up the DOM queries for reuse.
 const puzzleEl = document.querySelector("#puzzle")
 const guessEl = document.querySelector("#guesses")
@@ -27,7 +30,7 @@ const render = () => {
 
     puzzle = game.puzzle.toLowerCase().split('')
     puzzle.forEach((letter) => puzzleEl.innerHTML += `<span>${letter}</span>`)
-} 
+}
 
 const startGame = async () => {
 

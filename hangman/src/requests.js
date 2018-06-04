@@ -2,7 +2,7 @@
 const getPuzzle = async (wordCount) => {
 
     // Await the response of using fetch and store the result in the response variable.
-    const response = await fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
+    const response = await fetch(`//puzzle.mead.io/puzzle?wordCount=${wordCount}`)
 
     if (response.ok) {
         // Store the parsed result of using .json on the promise in response.
@@ -13,3 +13,4 @@ const getPuzzle = async (wordCount) => {
         throw Error(response.statusText)
     }
 }
+ export { getPuzzle as default }
